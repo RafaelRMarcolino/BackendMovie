@@ -14,6 +14,7 @@ public class Movie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
+	private Double score;
 	private Integer count;
 	private String image;
 	
@@ -37,6 +38,14 @@ public class Movie {
 		this.title = title;
 	}
 
+	public Double getScore() {
+		return score;
+	}
+
+	public void setScore(Double score) {
+		this.score = score;
+	}
+
 	public Integer getCount() {
 		return count;
 	}
@@ -52,7 +61,8 @@ public class Movie {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
+
+
 	
 	
 

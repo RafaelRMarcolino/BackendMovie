@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_score")
-public class Score {
+public class Score { 
 
 	@EmbeddedId
 	private ScorePk id = new ScorePk();
