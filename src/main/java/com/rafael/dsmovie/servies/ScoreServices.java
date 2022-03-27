@@ -12,56 +12,49 @@ import com.rafael.dsmovie.entities.User;
 import com.rafael.dsmovie.repositories.MovieRepositories;
 import com.rafael.dsmovie.repositories.ScoreRepositories;
 import com.rafael.dsmovie.repositories.UserRepositories;
-
 @Service
 public class ScoreServices {
- 
+
 	@Autowired
-	private MovieRepositories movieRespository;
-	
+	private MovieRepositories movieRepository;
+
 	@Autowired
-	private UserRepositories userRespository;
-	
+	private UserRepositories userRepository;
+
 	@Autowired
-	private ScoreRepositories scoreRespository;
-	
+	private ScoreRepositories scoreRepository;
+
 	@Transactional
 	public MovieDTO saveScore(ScoreDTO dto) {
-		
-		User user = userRespository.findByEmail(dto.getEmail());
-		if(user == null) {
+
+		User user = userRepository.findByEmail(dto.getEmail());
+		if (user == null) {
 			user = new User();
 			user.setEmail(dto.getEmail());
-			user = userRespository.saveAndFlush(user);
+			user = userRepository.saveAndFlush(user);
 		}
-		
-		Movie movie = movieRespository.findById(dto.getMovieId()).get();
-		
+
+		Movie movie = movieRepository.findById(dto.getMovieId()).get();
+
 		Score score = new Score();
 		score.setMovie(movie);
 		score.setUser(user);
 		score.setValue(dto.getScore());
-		
-		score = scoreRespository.saveAndFlush(score);
-		
+
+		score = scoreRepository.saveAndFlush(score);
+
 		double sum = 0.0;
 		for (Score s : movie.getScores()) {
-			
 			sum = sum + s.getValue();
 		}
-		
+
 		double avg = sum / movie.getScores().size();
-		
+
 		movie.setScore(avg);
 		movie.setCount(movie.getScores().size());
-		
-		movie = movieRespository.save(movie);
-		
+
+		movie = movieRepository.save(movie);
+
 		return new MovieDTO(movie);
-		
 	}
 }
-
-
-
-

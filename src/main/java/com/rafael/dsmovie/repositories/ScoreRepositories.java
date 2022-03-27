@@ -8,4 +8,3 @@ import com.rafael.dsmovie.entities.ScorePk;
 public interface ScoreRepositories extends JpaRepository<Score, ScorePk> {
 
 }
-	
