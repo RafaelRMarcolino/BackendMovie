@@ -3,6 +3,14 @@
 
 ![dsmovie-dominio](https://user-images.githubusercontent.com/67287171/185814189-4aa19426-34ed-40bd-93d4-b206b6e79160.png)
 
+````
+Spring Data jpa
+H2 DataBase
+PostgresSql
+Spring web
+
+````
+
 
 import.sql
 
